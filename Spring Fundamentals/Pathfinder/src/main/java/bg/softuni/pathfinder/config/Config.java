@@ -12,13 +12,27 @@ import org.springframework.context.annotation.Configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Random;
 
 @Configuration
 public class Config {
 
     @Bean
+    public Random random() {
+        return new Random();
+    }
+
+    @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -30,8 +44,8 @@ public class Config {
     }
 
     @Bean
-    public Validator validator(){
-        return  Validation.byDefaultProvider()
+    public Validator validator() {
+        return Validation.byDefaultProvider()
                 .configure()
                 .buildValidatorFactory()
                 .getValidator();

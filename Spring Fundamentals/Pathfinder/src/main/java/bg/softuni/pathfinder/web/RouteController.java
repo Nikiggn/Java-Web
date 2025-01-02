@@ -1,5 +1,7 @@
 package bg.softuni.pathfinder.web;
 
+import bg.softuni.pathfinder.data.entities.enums.CategoryType;
+import bg.softuni.pathfinder.data.entities.enums.Level;
 import bg.softuni.pathfinder.service.Impl.RouteServiceImpl;
 import bg.softuni.pathfinder.service.RouteService;
 import bg.softuni.pathfinder.service.dto.RouteShortInfoDTO;
@@ -32,5 +34,15 @@ public class RouteController {
 
 
         return "routes";
+    }
+
+    @GetMapping("/add-route")
+    public ModelAndView addRoute() {
+        ModelAndView modelAndView = new ModelAndView("add-route");
+
+        modelAndView.addObject("route", new RouteShortInfoDTO());
+        modelAndView.addObject("levels", Level.values());
+        modelAndView.addObject("categories", CategoryType.values());
+        return modelAndView;
     }
 }

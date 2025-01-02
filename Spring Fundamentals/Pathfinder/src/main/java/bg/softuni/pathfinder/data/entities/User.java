@@ -26,7 +26,7 @@ public class User extends BaseEntity {
     @Column(unique = true)
     private String email;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     @Enumerated(EnumType.STRING)
@@ -82,5 +82,13 @@ public class User extends BaseEntity {
 
     public void setLevel(Level level) {
         this.level = level;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }
